@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Corben:wght@700&display=swap");
+
+* {
+  box-sizing: border-box;
+  background-color: #fdcc40;
+  margin-top: 70px;
+}
+
+body {
+  min-height: 100vh;
+  --space: 5px;
+}
+h1{
+    color: black;
+    text-align: center;
+}
+.marquee {
+  --duration: 10s;
+  --gap: var(--space);
+
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: var(--gap);
+}
+
+.marquee__group {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: var(--gap);
+  min-width: 100%;
+  animation: scroll var(--duration) linear infinite;
+}
+
+@media (max-width : 750px) {
+  .marquee__group {
+    animation-play-state: paused;
+  }
+  .marquee__group{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    flex-grow: initial;
+    box-sizing: border-box;
+  }
+}
+
+.marquee__group img {
+  max-width: clamp(10rem, 1rem + 28vmin, 20rem);
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 1rem;
+}
+
+
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
